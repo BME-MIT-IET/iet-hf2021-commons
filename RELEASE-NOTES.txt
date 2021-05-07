@@ -1,0 +1,83 @@
+# Apache Commons RDF
+
+## 0.6.0-SNAPSHOT
+
+See https://issues.apache.org/jira/browse/COMMONSRDF/
+for issues fixed since the last release.
+
+## 0.5.0 (2017-12-23)
+
+This is the first release after graduation. Although there are not API changes
+nor big improvements, it updates different core aspects and dependencies.
+
+* [COMMONSRDF-47] - RDFSyntax should be interface, not enum
+* [COMMONSRDF-51] - RDF-1.1 specifies that language tags need to be compared using lower-case
+* [COMMONSRDF-52] - Duplicate Bundle-SymbolicName values across all components
+* [COMMONSRDF-55] - Stream of Jena quads use wrong IRI for default graph
+* [COMMONSRDF-57] - Use newer dependency Jena/RDF4J/JSONLD Java
+* [COMMONSRDF-62] - japicmp-maven-plugin breaking build because there is at least one incompatibility
+* [COMMONSRDF-63] - AbstractRDFParserTest.parseFile and parseFileContentType broken under Mac OS X
+* [COMMONSRDF-66] - JenaDatasetImpl.toString() throws RIOT exception
+* [COMMONSRDF-53] - Add ServiceLoader support in OSGi
+* [COMMONSRDF-54] - overloaded versions of RDF4J#asRDFTerm(org.eclipse.rdf4j.model.Value)
+* [COMMONSRDF-59] - Fix javadocs warnings
+* [COMMONSRDF-64] - Add Automatic-Module-Name to bundle manifest
+* [COMMONSRDF-65] - Upgrade to Jena 3.4.0, RDF4J 2.2.2
+* [COMMONSRDF-70] - Upgrade Jena version to 3.5.0
+
+## 0.3.0-incubating (2016-11)
+
+This release adds RDF implementations based on Apache Jena, Eclipse RDF4J and
+JSONLD-Java. New interfaces include Dataset and Quad. Note that the 
+interface RDFTermFactory has been deprecated and been replaced by the interface
+RDF. Graph.getTriples() has been deprecated and replaced by 
+Graph.iterate(). This release adds an experimental interface 
+RDFParser, note that this may evolve or be removed in the next release.
+
+* [COMMONSRDF-7] - Document that RDFTerm, Triple and Quad are immutable
+* [COMMONSRDF-33] - Jena integration
+* [COMMONSRDF-34] - Add DatasetImpl using Jena
+* [COMMONSRDF-35] - rdf4j integration
+* [COMMONSRDF-36] - jsonld-java integratoin
+* [COMMONSRDF-37] - Quad and Dataset support
+* [COMMONSRDF-38] - simple Graph.contains(Triple) now maps bnodes consistently
+* [COMMONSRDF-39] - Add RDFParser interface (experimental)
+* [COMMONSRDF-46] - Rename RDFTermFactory to RDF
+
+## 0.2.0-incubating (2016-04)
+
+This release clarifies .equals() and .hashCode() for RDFTerms so that they can
+be compared across graphs and implementations.
+
+* [COMMONSRDF-14] - Define value returned by hashCode()
+* [COMMONSRDF-20] - ServiceLoader mechanism to load RDFTermFactory
+* [COMMONSRDF-21] - Remove BlankNode requirements from RDFTermFactory.createGraph()
+* [COMMONSRDF-25] - Remove mentions of "local scope" in .equals()
+* [COMMONSRDF-26] - Add RDFSyntax constants (e.g. TURTLE)
+* [COMMONSRDF-27] - RDFTermFactory no longer require BlankNode mapping
+* [COMMONSRDF-28] - Add internal SimpleRDFTerm marker interface
+
+## 0.1.0-incubating (2015-05)
+
+This is the first release after moving to Apache Incubator.
+
+* [COMMONSRDF-2] - Change to package name org.apache.commons.rdf.api
+* [COMMONSRDF-6] - Contract around the internal string of a blank node
+* [COMMONSRDF-8] - simple .GraphImpl.add() must clone BlankNode
+* [COMMONSRDF-11] - Simple should be extendable classes
+* [COMMONSRDF-12] - Graph to be Iterable
+* [COMMONSRDF-29] - BlankNode.internalIdentifier() renamed to BlankNode.uniqueReference()
+* [COMMONSRDF-30] - Add "simple" implementation and unit tests
+* [COMMONSRDF-31] - Add RDFTermFactory
+* Added user guide to website
+
+
+## 0.0.2 (2014-08-04)
+
+* Change to package name com.github.commonsrdf.api
+* BlankNode.getLabel() renamed to BlankNode.internalIdentifier()
+* Removed Quad
+
+## 0.0.1 (2014-07-18)
+
+* First release
