@@ -41,8 +41,8 @@
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <maven.javadoc.skip>false</maven.javadoc.skip>
-        <maven.test.skip>false</maven.test.skip>
+        <maven.javadoc.skip>true</maven.javadoc.skip>
+        <maven.test.skip>true</maven.test.skip>
         <rat.skip>true</rat.skip>
         <project.build.encoding>UTF-8</project.build.encoding>
         <commons.encoding>UTF-8</commons.encoding>
