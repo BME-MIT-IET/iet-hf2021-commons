@@ -30,3 +30,33 @@ Feature: Is Picasso in the graph?
     | Monet  	  				| false  |
     | Picasso   				| true   |
     | anything else! 	  | false  |
+    
+      
+ 		Scenario: We have an empty graph
+ 		Given We put <some> quads in the graph
+ 		When  we ask the count of the quads in graph is equal to that
+ 		But  if we remove a quad from the graph
+ 		Then the graphs count should be <fewer>
+ 		
+ 		Examples:
+    | some 							| fewer |
+    | 4 	  						| 3 |
+    | 5   							| 4 |
+
+ 		
+ 		
+ 		
+ 		
+ 		
+ 		
+ 		
+ 		
+ 		
+ 		
+ 		
+ 		
+ 		
+ 		
+ 		
+ 		
+ 		
