@@ -19,10 +19,13 @@ package org.apache.commons.rdf.simple;
 
 import static org.junit.Assert.*;
 
+import java.util.Optional;
+
 import org.apache.commons.rdf.api.AbstractDatasetTest;
 import org.apache.commons.rdf.api.RDF;
 import org.junit.Assume;
 import org.junit.Test;
+import org.apache.commons.rdf.api.*;
 
 /**
  * Test SimpleRDF with AbstractGraphTest
@@ -45,4 +48,94 @@ public class SimpleDatasetTest extends AbstractDatasetTest {
 
     }
 
+    /**
+     * Test what happens if 11 quad is in the dataset and you call toString
+     */
+    @Test
+    public void DatasetImpToStringTest() {
+        IRI randomIri = factory.createIRI("some full random iri");
+        bobName = factory.createLiteral("Bob", "en-US");
+        Literal randomLiteralValue = factory.createLiteral("literal for eleventh");
+        // Adding 11th quad to dataset
+        dataset.add(null, alice, randomIri, randomLiteralValue);
+
+        //Assert
+        assertTrue(dataset.toString().endsWith("more"));
+        assertEquals(11, dataset.size());
+    }
+
+    /**
+     * Test if DummyIRI converts into IRIImpl
+     */
+    @Test
+    public void test_internallyMap_IRI_to_IRIImpl() {
+        Quad quad = factory.createQuad(null, alice, new DummyIRI(5), alice);
+        dataset.add(quad);
+        assertEquals(1, dataset.stream(Optional.empty(), alice, null, alice).count());
+        Quad foundQuad = dataset.stream(Optional.empty(), alice, null, alice).findFirst().get();
+        assertTrue(foundQuad.getPredicate() instanceof IRIImpl);
+    }
+
+    /**
+     * Test if other Literal implementation converts to LiteralImpl with Language tag
+     */
+    @Test
+    public void test_internallyMap_Literal_to_LiteralImp_WithLanguageTag() {
+        final Literal otherLiteral = new Literal() {
+            @Override
+            public String ntriplesString() {
+                return "Hello@eN-Gb";
+            }
+            @Override
+            public String getLexicalForm() {
+                return "Hello";
+            }
+            @Override
+            public Optional<String> getLanguageTag() {
+                return Optional.of("eN-Gb");
+            }
+            @Override
+            public IRI getDatatype() {
+                return factory.createIRI("asd");
+            }
+        };
+
+        Quad quad = factory.createQuad(null,alice,alice,otherLiteral);
+        dataset.add(quad);
+        assertEquals(1, dataset.stream(Optional.empty(), alice, alice, null).count());
+        Quad foundQuad = dataset.stream(Optional.empty(), alice, alice, null).findFirst().get();
+        assertTrue(foundQuad.getObject() instanceof LiteralImpl);
+    }
+
+
+    /**
+     * Test if other Literal implementation converts to LiteralImpl
+     */
+    @Test
+    public void test_internallyMap_Literal_to_LiteralImp() {
+        final Literal otherLiteral = new Literal() {
+            @Override
+            public String ntriplesString() {
+                return "Hello@eN-Gb";
+            }
+            @Override
+            public String getLexicalForm() {
+                return "Hello";
+            }
+            @Override
+            public Optional<String> getLanguageTag() {
+                return Optional.empty();
+            }
+            @Override
+            public IRI getDatatype() {
+                return factory.createIRI("asd");
+            }
+        };
+
+        Quad quad = factory.createQuad(null,alice,alice,otherLiteral);
+        dataset.add(quad);
+        assertEquals(1, dataset.stream(Optional.empty(), alice, alice, null).count());
+        Quad foundQuad = dataset.stream(Optional.empty(), alice, alice, null).findFirst().get();
+        assertTrue(foundQuad.getObject() instanceof LiteralImpl);
+    }
 }
