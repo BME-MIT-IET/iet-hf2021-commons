@@ -54,28 +54,32 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-  			<groupId>org.jacoco</groupId>
-  			<artifactId>jacoco-maven-plugin</artifactId>
-  			<version>0.8.6</version>
-  			<scope>test</scope>
-		</dependency>
-		<dependency>
+          <groupId>org.jacoco</groupId>
+          <artifactId>jacoco-maven-plugin</artifactId>
+          <version>0.8.6</version>
+          <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java</artifactId>
             <version>6.8.1</version>
             <scope>test</scope>
         </dependency>
-		<dependency>
+		    <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-junit</artifactId>
             <version>6.8.1</version>
             <scope>test</scope>
         </dependency>
-		<dependency>
+		    <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>${junit.version}</version>
             <scope>test</scope>
+      	<dependency>
+            <groupId>com.carrotsearch</groupId>
+            <artifactId>junit-benchmarks</artifactId>
+            <version>0.7.2</version>
         </dependency>
     </dependencies>
 
