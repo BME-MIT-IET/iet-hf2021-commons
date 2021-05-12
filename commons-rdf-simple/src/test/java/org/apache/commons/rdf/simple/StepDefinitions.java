@@ -22,6 +22,7 @@ import static org.junit.Assert.assertEquals;
 import org.apache.commons.rdf.api.IRI;
 import org.apache.commons.rdf.api.Literal;
 
+import io.cucumber.java.en.But;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -75,6 +76,52 @@ public class StepDefinitions {
     public void we_should_be_told(String answer) {
         assertEquals(answer, isPicasso);
     }
+    
+    private DatasetImpl dataSet;
+    private int cntShouldBe = 0;
+    private QuadImpl quadtoRemove;
+    
+    @Given("We put {int} quads in the graph")
+    public void putting_Quads(int numberofQuads) {
+    	this.dataSet = new DatasetImpl(this.factory);
+    	cntShouldBe = numberofQuads;
+    	String literals[] = new String[] {"sg","anything","everything","almost everything","nothing","barely nothing"};
+    	final IRI someIRI = factory.createIRI("http://cucumber.hu/random/doesntmatter");
+        
+        final IRI anotherPredicate = factory.createIRI("is");
+        final Literal anotherLiteral = factory.createLiteral("somethingelse");
+      
+        quadtoRemove = new QuadImpl(factory.createBlankNode("uresNode2"),someIRI,anotherPredicate,anotherLiteral);
+        for (int i =0; i< numberofQuads-1;i++)
+        	{
+        	factory.createIRI("is");
+        	final IRI newIRI = factory.createIRI("http://cucumber.hu/random/doesntmatter");
+            final IRI somePredicate = factory.createIRI("is");
+            final Literal someLiteral = factory.createLiteral(literals[i]);
+        	dataSet.add(new QuadImpl(factory.createBlankNode("uresNode"),newIRI,somePredicate,someLiteral));
+        	}
+        dataSet.add(quadtoRemove);
+       }
+    
+    @When("we ask the count of the quads in graph is equal to that")
+    public void graph_count_equals() {
+    	cntShouldBe = (int) dataSet.size();
+    }
+    
+    
+    
+    @But("if we remove a quad from the graph")
+    public void remove_quad() {
+    	dataSet.remove(quadtoRemove);
+    	cntShouldBe-=1;
+    }
+    
+    @Then("the graphs count should be {int}")
+    public void graph_count(int answerCount) {
+        assertEquals(cntShouldBe, answerCount);
+    }
+    
+    
     
     
     
