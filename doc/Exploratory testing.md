@@ -13,10 +13,17 @@ Hozzáadott személyek:
 
 A hozzáadott kapcsolatok kifejezik az egyes személyek kapcsolatát a családi- illetve keresztnevük literáljaival, illetve hogy Tony Soprano ismeri (foaf:knows) Christian Moltisantit. A lekérdezések és műveletek ezen az adathalmazon lettek végrehajtva.
 
-**Az alábbi műveleteket próbáltam ki (feketével a sikeresek, pirossal a sikertelenek):**
+**Az alábbi műveleteket próbáltam ki:**
 
 1. a fenti kapcsolatokat kifejező négyesek hozzáadása a datasethez
-2. szűrés a "Tony" literál object-et tartalmazó négyesekre
+   iterálás a dataseten
+2. szűrés a "Tony" literál object-et tartalmazó négyesekre a datasetben
 3. az előbbi szűréssel megtalált négyesek subjectje  (személy) alapján az adott Tony-k családnevének kikeresése
-4. 
+4. ugyanezen négyesek hármas-reprezentációjának hozzáadása a graph objektumhoz
+   iterálás a graphon
+5. ugyanannyi állítás lett-e a gráfban, mint a datasetben így
+6. bent van-e a dataset-ben néhány hozzáadott négyes, 
+   illetve a graph-ben néhány hozzáadott hármas, 
+   egyikben sincs-e benne nem létező állítás?
+7. szűrés a gráfban a "Tony" literál object-et tartalmazó triple-ekre
 
