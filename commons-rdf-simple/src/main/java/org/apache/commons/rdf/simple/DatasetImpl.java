@@ -130,9 +130,9 @@ final class DatasetImpl implements Dataset {
     public Stream<Quad> stream(final Optional<BlankNodeOrIRI> graphName, final BlankNodeOrIRI subject, final IRI predicate,
             final RDFTerm object) {
         final Optional<BlankNodeOrIRI> newGraphName;
-        if (!graphName.isPresent()) {
+        if (graphName == null) {
             // Avoid Optional<Optional<BlankNodeOrIRI>> ...
-            newGraphName = Optional.empty();
+            newGraphName = null;
         } else {
             newGraphName = graphName.map(g -> (BlankNodeOrIRI) internallyMap(g));
         }
@@ -141,7 +141,7 @@ final class DatasetImpl implements Dataset {
         final RDFTerm newObject = internallyMap(object);
 
         return getQuads(t -> {
-            if (newGraphName.isPresent() && !t.getGraphName().equals(newGraphName)) {
+            if (newGraphName != null && !t.getGraphName().equals(newGraphName)) {
                 // This would check Optional.empty() == Optional.empty()
                 return false;
             }
@@ -190,6 +190,9 @@ final class DatasetImpl implements Dataset {
         return s;
     }
 
+    @Override
+    public void close() {
+    }
 
     @Override
     public Graph getGraph() {
