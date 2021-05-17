@@ -53,7 +53,7 @@ public class SimpleDatasetTest extends AbstractDatasetTest {
      */
     @Test
     public void DatasetImpToStringTest() {
-        IRI randomIri = factory.createIRI("some full random iri");
+        IRI randomIri = factory.createIRI("somefullrandomiri");
         bobName = factory.createLiteral("Bob", "en-US");
         Literal randomLiteralValue = factory.createLiteral("literal for eleventh");
         // Adding 11th quad to dataset

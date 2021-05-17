@@ -66,7 +66,7 @@ public class SimpleGraphTest extends AbstractGraphTest {
             }
             @Override
             public IRI getDatatype() {
-                return factory.createIRI("random stuff");
+                return factory.createIRI("randomstuff");
             }
         };
 
@@ -125,11 +125,11 @@ public class SimpleGraphTest extends AbstractGraphTest {
      */
     @Test
     public void GraphImplToStringTest() {
-        IRI randomIri = factory.createIRI("random iri1");
-        IRI randomIri2 = factory.createIRI("random iri2");
-        IRI randomIri3 = factory.createIRI("random iri3");
+        IRI randomIri = factory.createIRI("randomiri1");
+        IRI randomIri2 = factory.createIRI("randomiri2");
+        IRI randomIri3 = factory.createIRI("randomiri3");
         bobName = factory.createLiteral("Bob", "en-US");
-        Literal randomLiteralValue = factory.createLiteral("random stuff");
+        Literal randomLiteralValue = factory.createLiteral("randomstuff");
         
         graph.add(alice, randomIri, randomLiteralValue);
         graph.add(alice, randomIri2, randomLiteralValue);
